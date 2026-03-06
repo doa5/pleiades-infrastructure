@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gospel-db
+spec:
+  containers:
+  - env:
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: secret-beako
+          key: db_password
+    - name: POSTGRES_USER
+      valueFrom:
+        secretKeyRef:
+          name: secret-beako
+          key: db_user
+    image: postgres
+    name: gospel-db
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "1"
+      limits:
+        memory: "1Gi"
+        cpu: "1"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
