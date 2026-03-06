@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lagunica-core
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sanctuary-dev
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pleiades-prod
