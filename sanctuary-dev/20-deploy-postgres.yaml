@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gospel-db
+  namespace: sanctuary-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gospel-db
+  template:
+    metadata:
+      labels:
+        app: gospel-db
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-beako
+              key: db_password
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: secret-beako
+              key: db_user
+        - name: POSTGRES_DB
+          value: gospel-db
+        image: postgres:16
+        name: gospel-db
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        volumeMounts:
+        - name: gospel-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: gospel-data
+        persistentVolumeClaim:
+          claimName: pvc-beako
