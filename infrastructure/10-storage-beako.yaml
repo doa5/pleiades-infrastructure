@@ -10,7 +10,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: sc-beako
-  local: 
+  local:
     path: /mnt/beako-library
   nodeAffinity:
     required:
