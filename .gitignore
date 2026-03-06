@@ -35,3 +35,13 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+.kube/
+*secrets*.yaml
+
+# Helm
+Chart.lock
+charts/*/charts/
