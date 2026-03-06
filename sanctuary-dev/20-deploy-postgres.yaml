@@ -25,6 +25,8 @@ spec:
             secretKeyRef:
               name: secret-beako
               key: db_user
+        - name: POSTGRES_DB
+          value: gospel-db
         image: postgres:16
         name: gospel-db
         resources:
