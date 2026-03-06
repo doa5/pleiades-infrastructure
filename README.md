@@ -15,6 +15,6 @@ To maintain order within the watchtower, all manifests are organised into Functi
 
 ### Tower Floors (Namespaces)
 
-* **`lagunica-core`**: The citadel. Cluster-wide tools.
-* **`sanctuary-dev`**: The trials. For testing.
+* **`lagunica-core`**: The citadel. Cluster-wide platform tooling (observability, CI runners).
+* **`sanctuary-dev`**: The trials. Development and testing workloads.
 * **`pleiades-prod`**: The watchtower. Isolated stable environment.
