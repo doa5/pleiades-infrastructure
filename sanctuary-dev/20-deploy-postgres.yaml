@@ -25,7 +25,7 @@ spec:
             secretKeyRef:
               name: secret-beako
               key: db_user
-        image: postgres:18
+        image: postgres:16
         name: gospel-db
         resources:
           requests:
