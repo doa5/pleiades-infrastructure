@@ -40,7 +40,7 @@ terraform.rc
 kubeconfig
 *.kubeconfig
 .kube/
-*secrets*.yaml
+*secret*.yaml
 
 # Helm
 Chart.lock
