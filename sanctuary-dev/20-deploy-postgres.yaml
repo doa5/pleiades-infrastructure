@@ -25,5 +25,12 @@ spec:
       limits:
         memory: "1Gi"
         cpu: "1"
+    volumeMounts:
+    - name: postgres-data
+      mountPath: /var/lib/postgresql/data
   dnsPolicy: ClusterFirst
   restartPolicy: Always
+  volumes:
+  - name: postgres-data
+    persistentVolumeClaim:
+      claimName: pvc-beako
