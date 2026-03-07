@@ -3,15 +3,32 @@ kind: Deployment
 metadata:
   name: gospel-db
   namespace: sanctuary-dev
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: gospel-db
+    app.kubernetes.io/version: "16"
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
+    pleiades.watchtower/environment: sanctuary-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gospel-db
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/instance: gospel-db
   template:
     metadata:
       labels:
-        app: gospel-db
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/instance: gospel-db
+        app.kubernetes.io/version: "16"
+        app.kubernetes.io/part-of: pleiades-infra
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: kubectl
+        pleiades.watchtower/identity: beako
+        pleiades.watchtower/environment: sanctuary-dev
     spec:
       containers:
       - env:

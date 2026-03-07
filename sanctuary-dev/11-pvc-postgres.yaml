@@ -3,6 +3,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc-beako
   namespace: sanctuary-dev
+  labels:
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
 spec:
   resources:
     requests:

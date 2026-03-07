@@ -2,6 +2,11 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: sc-beako
+  labels:
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ---
