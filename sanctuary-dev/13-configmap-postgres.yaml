@@ -12,7 +12,7 @@ metadata:
     pleiades.watchtower/identity: beako
     pleiades.watchtower/environment: sanctuary-dev
 data:
-   gospel-db-seed.sql: |
+  gospel-db-seed.sql: |
     CREATE TABLE lugunica_records (
       subject VARCHAR(255) PRIMARY KEY,
       faction VARCHAR(100),
