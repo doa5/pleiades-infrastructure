@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-beako
+  namespace: sanctuary-dev
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: gospel-db
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
+    pleiades.watchtower/environment: sanctuary-dev
+data:
+  gospel-db-seed.sql: |
+    CREATE TABLE lugunica_records (
+      subject VARCHAR(255) PRIMARY KEY,
+      faction VARCHAR(100),
+      power_type VARCHAR(100), 
+      threat_potential INT,
+      lore_summary TEXT,
+      location_origin VARCHAR(255)
+    );
+
+    -- Emilia Camp
+    INSERT INTO lugunica_records (subject, faction, power_type, threat_potential, lore_summary, location_origin) VALUES
+    ('Subaru Natsuki', 'Emilia Camp', 'Return by Death', 10, 'Possesses no raw strength but "resets" the world upon death to ensure a winning outcome.', 'Earth (Otherworld)'),
+    ('Emilia', 'Emilia Camp', 'Ice Brand Arts', 8, 'Half-Elf Spirit Arts user. Candidate for the Royal Selection. High mana capacity.', 'Elior Forest'),
+    ('Ram', 'Emilia Camp', 'Clairvoyance / Wind Magic', 7, 'Elder Oni sister. Despite losing her horn, she is a master of wind magic and sensory linking.', 'Demon Village'),
+    ('Rem', 'Emilia Camp', 'Oni Bloodline', 6, 'Maid of the Roswaal household. Wields a morningstar and expert water magic.', 'Demon Village'),
+    ('Frederica Baumann', 'Emilia Camp', 'Beast Transformation', 6, 'Veteran maid with demi-human blood. Can partially transform into a powerful gold-furred beast.', 'The Sanctuary'),
+    ('Otto Suwen', 'Emilia Camp', 'Divine Protection of Soul Language', 4, 'Merchant and strategist. Can communicate with any living creature for information gathering.', 'City of Kostuul')
+    ON CONFLICT (subject) DO NOTHING;
+
+    -- Kingdom of Lugunica
+    INSERT INTO lugunica_records (subject, faction, power_type, threat_potential, lore_summary, location_origin) VALUES
+    ('Reinhard van Astrea', 'Kingdom of Lugunica', 'Divine Protections', 10, 'The Sword Saint. Possesses an endless list of blessings. The world''s strongest individual.', 'Capital City'),
+    ('Roswaal L. Mathers', 'Kingdom of Lugunica', 'Six-Fold Magic', 9, 'The Court Mage. Capable of using all six magic elements with terrifying precision.', 'Margrave Territory'),
+    ('Julius Juukulius', 'Knight Order', 'Spirit Knight', 7, 'The "Greatest Knight." Uses six quasi-spirits to augment his elite swordsmanship.', 'Capital City'),
+    ('Elsa Granhiert', 'Assassin Guild', 'Vampiric Regeneration', 7, 'The "Bowel Hunter." Possesses supernatural healing and speed; obsessed with the beauty of internal organs.', 'Gusteko'),
+    ('Meili Portroute', 'Emilia Camp / Assassin Guild', 'Divine Protection of Magic Beast Manipulation', 6, 'A "Mabeast User" who can control deadly creatures. Formerly an assassin, now a guest of the Emilia Camp.', 'Unknown')
+    ON CONFLICT (subject) DO NOTHING;
+
+    -- Witch Cult
+    INSERT INTO lugunica_records (subject, faction, power_type, threat_potential, lore_summary, location_origin) VALUES
+    ('Satella', 'Witches of Sin', 'Authority of Envy', 10, 'The source of the Witch Factors. Sealed in a shadow-covered shrine for 400 years.', 'Sealed Shrine'),
+    ('Regulus Corneas', 'Witch Cult', 'Stillness of an Object''s Time', 10, 'Archbishop of Greed. Functionally invulnerable. The most entitled man in history.', 'Witch Cult'),
+    ('Echidna', 'Witches of Sin', 'Authority of Greed', 9, 'The Witch of Knowledge. Her soul maintains the Trials of the Sanctuary to satisfy her curiosity.', 'The Sanctuary'),
+    ('Ley Batenkaitos', 'Witch Cult', 'Eating Names/Memories', 8, 'Archbishop of Gluttony. Can erase a person''s existence from the world''s memory.', 'Witch Cult'),
+    ('Petelgeuse Romanee-Conti', 'Witch Cult', 'Unseen Hand', 6, 'Archbishop of Sloth. Known for his diligence, madness, and invisible appendages.', 'Witch Cult'),
+    ('Capella Emerada Lugunica', 'Witch Cult', 'Authority of Lust', 9, 'Sin Archbishop of Lust. Can shift her own form and others into horrific beasts; possesses "immortal" regenerative blood.', 'Witch Cult'),
+    ('Louis Arneb', 'Witch Cult', 'Authority of Gluttony', 9, 'One of the three Solar Eclipse siblings. Resides in the "Hall of Memories" and feeds on the lives of others.', 'Witch Cult'),
+    ('Roy Alphard', 'Witch Cult', 'Authority of Gluttony', 8, 'Sin Archbishop representing "Bizarre Eating." Accompanied Ley in the attack on the Priestella city hall.', 'Witch Cult'),
+    ('Sirius Romanee-Conti', 'Witch Cult', 'Authority of Wrath', 9, 'A woman wrapped in chains who forces her emotions and physical damage onto everyone in a wide radius.', 'Witch Cult')
+    ON CONFLICT (subject) DO NOTHING;
+
+    -- Arc 6 Legends
+    INSERT INTO lugunica_records (subject, faction, power_type, threat_potential, lore_summary, location_origin) VALUES
+    ('Volcanica', 'Legends', 'Dragon Breath', 10, 'The Divine Dragon. One of the Three Heroes who sealed the Witch 400 years ago.', 'Pleiades Watchtower'),
+    ('Reid Astrea', 'Legends', 'Heavenly Sword', 10, 'The First Sword Saint. Capable of cutting through concepts, magic, and reality itself.', 'Pleiades Watchtower'),
+    ('Shaula', 'Legends', 'Hell''s Snipe', 7, 'Guardian of the Watchtower. Mistook Subaru for her Master; snipes targets with needles.', 'Pleiades Watchtower')
+    ON CONFLICT (subject) DO NOTHING;
