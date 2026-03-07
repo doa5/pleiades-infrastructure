@@ -56,7 +56,13 @@ spec:
         volumeMounts:
         - name: gospel-data
           mountPath: /var/lib/postgresql/data
+        - name: gospel-seed
+          mountPath: /docker-entrypoint-initdb.d
+          readOnly: true
       volumes:
       - name: gospel-data
         persistentVolumeClaim:
           claimName: pvc-beako
+      - name: gospel-seed
+        configMap:
+          name: configmap-beako
