@@ -2,28 +2,10 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: sc-beako
+  labels:
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-beako
-spec:
-  capacity:
-    storage: 5Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: sc-beako
-  local:
-    path: /mnt/beako-library
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - ram-worker
