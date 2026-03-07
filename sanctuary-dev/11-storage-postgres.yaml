@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-beako
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: gospel-db
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
+    pleiades.watchtower/environment: sanctuary-dev
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: sc-beako
+  local:
+    path: /mnt/beako-library
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - ram-worker
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-beako
+  namespace: sanctuary-dev
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: gospel-db
+    app.kubernetes.io/part-of: pleiades-infra
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: kubectl
+    pleiades.watchtower/identity: beako
+    pleiades.watchtower/environment: sanctuary-dev
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: sc-beako
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
